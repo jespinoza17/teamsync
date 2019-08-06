@@ -10,11 +10,13 @@ class Circle extends Component {
     const display = [];
     const group = this.props.group;
     for (let i = 0; i < group.length; i++){
-      display.push(<p>{group[i].firstname} {group[i].lastname}</p>)
+      display.push(<p key={i}>{group[i].firstname} {group[i].lastname}</p>)
     }
+    console.log('act passed in: ', this.props.act)
     return (
       <div className='circle'>
         {display}
+        <p>Activity: {this.props.act}</p>
       </div>
     );
   }

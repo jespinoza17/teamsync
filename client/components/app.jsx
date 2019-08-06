@@ -13,7 +13,8 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = { isSignedIn: false,
-                    people: []
+                    people: [],
+                    activities: ['Walk to the Beach', 'Lunch','Coffee','Play Board Games']
                   };
     }
     uiConfig = {
@@ -28,7 +29,7 @@ class App extends Component {
   componentDidMount = () => {
     firebase.auth().onAuthStateChanged(user => {
       // user is now logged in
-      
+
       this.setState({ isSignedIn: !!user });
       console.log("user test", user);
       const fullName = user.displayName.split(' ');
@@ -63,7 +64,7 @@ class App extends Component {
             <div>Signed In!</div>
             <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
             <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
-            <Board people={this.state.people}/>
+            <Board people={this.state.people} activities={this.state.activities}/>
           </span>
         ) : (
           <StyledFirebaseAuth
